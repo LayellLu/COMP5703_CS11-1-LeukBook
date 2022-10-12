@@ -1,32 +1,25 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Container } from "react-bootstrap";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Homepage from "./pages/Homepage";
-import ProductPage from "./pages/ProductPage";
-import SizeRecommandation from "./pages/SizeRecommandation";
-/*
+import logo from './logo.svg';
+import './App.css';
 
-<Route path="/" component={Homepage} exact />
-<Route path="/products/:id" component={ProductPage} exact />
-*/
 function App() {
   return (
-    <Router>
-      <Header />
-      <main className="py-3">
-        <Container>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/products/:_id" element={<ProductPage />} />
-            <Route path="/sizerecommendation" element={<SizeRecommandation />} />
-          </Routes>
-        </Container>
-      </main>
-      <Footer />
-    </Router>
-  )
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
