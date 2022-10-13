@@ -24,7 +24,7 @@ function App() {
       </main>
       <Footer />
     </Router>
-  )
+  );
 }
 
 export default App;
