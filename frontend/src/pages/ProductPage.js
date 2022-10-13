@@ -1,161 +1,268 @@
-import React,{useState, useEffect} from "react";
-import product from "../components/Product"
+import React, { useState, useEffect } from "react";
+import product from "../components/Product";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, ListGroup, Card, Button } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import products from "../Products";
 
 export default function ProductPage() {
-    const params = useParams()
-    const [data, setData] = useState({})
-    useEffect(() => {
-        if(params._id){
-            let item = products.find(item=> item._id == params._id) || {}
-            setData(item)    
-        }
-    }, [params._id]);
-    return (
-        <>
+  const params = useParams();
+  const axios = require("axios").default;
+  const [data, setData] = useState({});
+  const [show, setShow] = useState(false);
+  const [waist, setWaist] = useState(0);
+  const [bust, setBust] = useState(0);
+  const [hip, setHip] = useState(0);
+  const [upperArm, setUpperArm] = useState(0);
+  const [upperThigh, setUpperThigh] = useState(0);
+  const [shoulderWidth, setShoulderWidth] = useState(0);
+  const [recommendationSize, setRecommendationSize] = useState(0);
 
-            <Row>
-                <Col md={6}>
-                    <Card className="my-3 p-3 rounded">
-                        <Link to={`/products/${product._id}`}>
-                            <Card.Img src={data.image} fluid="true" />
-                        </Link>
-                    </Card>
+  useEffect(() => {
+    if (params._id) {
+      let item = products.find((item) => item._id == params._id) || {};
+      setData(item);
+    }
+  }, [params._id]);
+
+  useEffect(() => {
+    //if it has already get the data
+    //Get API
+    axios
+      .get("/get")
+      .then(function (response) {
+        console.log(response);
+        console.log("success");
+        //get the size recommendation
+        setRecommendationSize(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [params._id]);
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
+  const handleSubmit = () => {
+    setShow(false);
+    //Post API
+    //axios.post(url[, data[, config]])
+    axios
+      .post("/submit", {
+        params: {
+          waist: waist,
+          bust: bust,
+          hip: hip,
+          upperArm: upperArm,
+          upperThigh: upperThigh,
+          shoulderWidth: shoulderWidth,
+        },
+      })
+      .then(function (response) {
+        console.log(response);
+        console.log("success");
+        return (
+          <Alert key="success" variant="success">
+            Submitted successfully!
+          </Alert>
+        );
+      })
+      .catch(function (error) {
+        console.log(error);
+        return (
+          <Alert key="danger" variant="danger">
+            Something went wrong, please try again!
+          </Alert>
+        );
+      });
+  };
+
+  const handleShow = () => {
+    setShow(true);
+  };
+
+  return (
+    <>
+      <Row>
+        <Col md={6}>
+          <Card className="my-3 p-3 rounded">
+            <Link to={`/products/${product._id}`}>
+              <Card.Img src={data.image} fluid="true" />
+            </Link>
+          </Card>
+        </Col>
+
+        <Col md={6}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <h3>{data.brand}</h3>
+            </ListGroup.Item>
+
+            <ListGroup.Item>
+              <div>{data.name}</div>
+            </ListGroup.Item>
+
+            <ListGroup.Item>Price: {data.price}</ListGroup.Item>
+            {/* <ListGroup.Item>Color: Blue</ListGroup.Item> */}
+            <ListGroup.Item>Status: {data.status}</ListGroup.Item>
+            <ListGroup.Item>
+              Turn heads and stand out in the crowd wearing your Ivy Dress in
+              Icy Blue Gingham. Designed to be a comfortable statement piece to
+              wear on those special occasions where a little black dress just
+              won't do! She looks fabulous layered with a denim jack for winter,
+              and sandals for summer.
+              <Col>·Boatneck shaped neckline</Col>
+              <Col>·Elastic sleeve</Col>
+              <Col>·Three tiers to the shin</Col>
+              <Col>·Pockets</Col>
+              <Col>·Designed in Australia, ethically made in Bali</Col>
+            </ListGroup.Item>
+            <ListGroup.Item>FABRIC: 100% PolyCotton</ListGroup.Item>
+            <ListGroup.Item>
+              MODEL DETAILS: Julia is 172cm tall and usually wears a size 16.
+              She is wearing a size L in this style. Shoulder to Hem 118cm
+            </ListGroup.Item>
+
+            <Row style={{ paddingTop: "15px" }}>
+              <Col>
+                <h5>Color:</h5>
+              </Col>
+              <div>
+                <Col md={10}>
+                  <Button className="btn-block" type="button">
+                    Blue
+                  </Button>
+                  <Button
+                    className="btn-block"
+                    type="button"
+                    style={{ marginLeft: "15px" }}
+                  >
+                    Pink
+                  </Button>
                 </Col>
-
-                <Col md={6}>
-                    <ListGroup variant="flush">
-                        <ListGroup.Item>
-                            <h3>{data.brand}</h3>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>
-                            <div>{data.name}</div>
-                        </ListGroup.Item>
-
-                        <ListGroup.Item>Price: {data.price}</ListGroup.Item>
-                        <ListGroup.Item>Color: Blue</ListGroup.Item>
-                        <ListGroup.Item>Status: {data.status}</ListGroup.Item>
-                        <ListGroup.Item>Turn heads and stand out in the crowd wearing your Ivy Dress in Icy Blue Gingham. Designed to be a comfortable statement piece to wear on those special occasions where a little black dress just won't do! She looks fabulous layered with a denim jack for winter, and sandals for summer.
-                            <Col>
-                                ·Boatneck shaped neckline
-                            </Col>
-                            <Col>
-                                ·Elastic sleeve
-                            </Col>
-                            <Col>
-                                ·Three tiers to the shin
-                            </Col>
-                            <Col>
-                                ·Pockets
-                            </Col>
-                            <Col>
-                                ·Designed in Australia, ethically made in Bali
-                            </Col>
-                        </ListGroup.Item>
-                        <ListGroup.Item>FABRIC: 100% PolyCotton</ListGroup.Item>
-                        <ListGroup.Item>MODEL DETAILS: Julia is 172cm tall and usually wears a size 16. She is wearing a size L in this style. Shoulder to Hem 118cm</ListGroup.Item>
-
-                        <Row>
-                            <Col><h5>Color:</h5></Col>
-                            <div>
-
-                                <Col md={10}>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        Blue
-                                    </Button>
-                                </Col>
-                            </div>
-                        </Row>
-
-                        <Row>
-                            <Col><h5>Sizes:</h5></Col>
-                            <div>
-
-                                <Col md={13}>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        6
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        8
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        10
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        12
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        14
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        16
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        18
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        20
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        22
-                                    </Button>
-                                    <Button
-                                        className="btn-block"
-                                        type="button">
-                                        24
-                                    </Button>
-                                </Col>
-                            </div>
-                        </Row>
-                        <Card>
-                            <Button
-                                className="btn-block"
-                                type="button">
-                                Recommand Size For Me!
-                            </Button>
-                        </Card>
-
-                        <Card>
-                            <Button
-                                className="btn-block"
-                                type="button">
-                                Add to Cart
-                            </Button>
-                        </Card>
-
-                        <Card>
-                            <Button
-                                className="btn-block"
-                                type="button">
-                                Buy it Now
-                            </Button>
-                        </Card>
-                    </ListGroup>
-                </Col>
+              </div>
             </Row>
-        </>
-    );
+
+            <Row style={{ paddingTop: "15px" }}>
+              <Col>
+                <h5>Sizes:</h5>
+              </Col>
+              <Col md={13}>
+                <Form.Select aria-label="Default select example">
+                  <option value="1">6</option>
+                  <option value="2">8</option>
+                  <option value="3">10</option>
+                  <option value="4">12</option>
+                  <option value="5">14</option>
+                  <option value="6">16</option>
+                  <option value="7">18</option>
+                  <option value="8">20</option>
+                  <option value="9">22</option>
+                  <option value="10">24</option>
+                </Form.Select>
+              </Col>
+            </Row>
+
+            {recommendationSize === 0 && (
+              <Button
+                className="btn-block"
+                type="button"
+                onClick={handleShow}
+                style={{ marginTop: "15px" }}
+              >
+                Recommand Size For Me!
+              </Button>
+            )}
+            {recommendationSize !== 0 && (
+              <>
+                <p>We recommend you size {recommendationSize}.</p>
+              </>
+            )}
+            <Button
+              className="btn-block"
+              type="button"
+              style={{ marginTop: "15px" }}
+            >
+              Add to Cart
+            </Button>
+            <Button
+              className="btn-block"
+              type="button"
+              style={{ marginTop: "15px" }}
+            >
+              Buy it Now
+            </Button>
+          </ListGroup>
+        </Col>
+      </Row>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Body Measurements</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Waist</Form.Label>
+              <Form.Control
+                placeholder="Mandatory field - Please enter how many centimetres"
+                onChange={(e) => setWaist(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+              <Form.Label>Bust</Form.Label>
+              <Form.Control
+                placeholder="Mandatory field - Please enter how many centimetres"
+                onChange={(e) => setBust(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
+              <Form.Label>Hip</Form.Label>
+              <Form.Control
+                placeholder="Mandatory field - Please enter how many centimetres"
+                onChange={(e) => setHip(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
+              <Form.Label>Upper Arm</Form.Label>
+              <Form.Control
+                placeholder="Mandatory field - Please enter how many centimetres"
+                onChange={(e) => setUpperArm(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
+              <Form.Label>Upper Thigh</Form.Label>
+              <Form.Control
+                placeholder="Mandatory field - Please enter how many centimetres"
+                onChange={(e) => setUpperThigh(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
+              <Form.Label>Shoulder Width</Form.Label>
+              <Form.Control
+                placeholder="Mandatory field - Please enter how many centimetres"
+                onChange={(e) => setShoulderWidth(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 }
