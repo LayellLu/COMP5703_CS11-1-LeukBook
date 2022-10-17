@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 function Header() {
+  //need judge if login and register
+  const [register, setRegister] = useState(false);
+  const [login, setLogin] = useState(false);
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -19,12 +22,19 @@ function Header() {
                   <i className="fas fa-shopping-cart"></i>Cart
                 </Nav.Link>
               </LinkContainer>
-
-              <LinkContainer to="/login">
-                <Nav.Link>
-                  <i className="fas fa-user"></i>LogIn
-                </Nav.Link>
-              </LinkContainer>
+              {register === false ? (
+                <LinkContainer to="/register">
+                  <Nav.Link>
+                    <i className="fas fa-user"></i>Register
+                  </Nav.Link>
+                </LinkContainer>
+              ) : (
+                <LinkContainer to="/login">
+                  <Nav.Link>
+                    <i className="fas fa-user"></i>LogIn
+                  </Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

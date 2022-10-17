@@ -5,11 +5,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Homepage from "./pages/Homepage";
 import ProductPage from "./pages/ProductPage";
-/*
+import LoginPage from "./pages/Loginpage";
+import RegisterPage from "./pages/Registerpage";
 
-<Route path="/" component={Homepage} exact />
-<Route path="/products/:id" component={ProductPage} exact />
-*/
 function App() {
   return (
     <Router>
@@ -19,6 +17,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/products/:_id" element={<ProductPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </Container>
       </main>
