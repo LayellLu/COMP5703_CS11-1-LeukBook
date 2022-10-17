@@ -148,10 +148,9 @@ export default function ProductPage() {
             </Row>
 
             <Row style={{ paddingTop: "15px" }}>
-              <Col>
-                <h5>Sizes:</h5>
-              </Col>
-              <Col md={13}>
+              <h5>Sizes:</h5>
+
+              <Col md={7}>
                 <Form.Select aria-label="Default select example">
                   <option value="1">6</option>
                   <option value="2">8</option>
@@ -165,23 +164,26 @@ export default function ProductPage() {
                   <option value="10">24</option>
                 </Form.Select>
               </Col>
+              <Col>
+                {recommendationSize === 0 && (
+                  <Button
+                    className="btn-block"
+                    type="button"
+                    variant="link"
+                    onClick={handleShow}
+                    style={{ marginLeft: "15px", float: "left" }}
+                  >
+                    Find my fit
+                  </Button>
+                )}
+                {recommendationSize !== 0 && (
+                  <>
+                    <p>We recommend you size {recommendationSize}.</p>
+                  </>
+                )}
+              </Col>
             </Row>
 
-            {recommendationSize === 0 && (
-              <Button
-                className="btn-block"
-                type="button"
-                onClick={handleShow}
-                style={{ marginTop: "15px" }}
-              >
-                Recommand Size For Me!
-              </Button>
-            )}
-            {recommendationSize !== 0 && (
-              <>
-                <p>We recommend you size {recommendationSize}.</p>
-              </>
-            )}
             <Button
               className="btn-block"
               type="button"
