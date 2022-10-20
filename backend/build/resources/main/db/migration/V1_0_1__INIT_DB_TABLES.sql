@@ -10,11 +10,10 @@ CREATE TABLE IF NOT EXISTS leukbook.user_body
 (
     id             serial PRIMARY KEY,
     user_id        bigint REFERENCES leukbook.user (id) NOT NULL,
-    weight         decimal,
-    height         decimal,
+    upper_arm       decimal,
+    upper_thigh     decimal,
     shoulder_width decimal,
     bust           decimal,
     waist          decimal,
-    hip            decimal,
-    leg_length     decimal
+    hip            decimal
 );

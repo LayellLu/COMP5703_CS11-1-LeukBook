@@ -8,9 +8,9 @@ public class UserBodyModel {
 
     private Long userId;
 
-    private BigDecimal weight;
+    private BigDecimal upperArm;
 
-    private BigDecimal height;
+    private BigDecimal upperThigh;
 
     private BigDecimal shoulderWidth;
 
@@ -20,7 +20,6 @@ public class UserBodyModel {
 
     private BigDecimal hip;
 
-    private BigDecimal legLength;
 
     public Integer getId() {
         return id;
@@ -38,20 +37,20 @@ public class UserBodyModel {
         this.userId = userId;
     }
 
-    public BigDecimal getWeight() {
-        return weight;
+    public BigDecimal getUpperArm() {
+        return upperArm;
     }
 
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
+    public void setUpperArm(BigDecimal upperArm) {
+        this.upperArm = upperArm;
     }
 
-    public BigDecimal getHeight() {
-        return height;
+    public BigDecimal getUpperThigh() {
+        return upperThigh;
     }
 
-    public void setHeight(BigDecimal height) {
-        this.height = height;
+    public void setUpperThigh(BigDecimal upperThigh) {
+        this.upperThigh = upperThigh;
     }
 
     public BigDecimal getShoulderWidth() {
@@ -86,11 +85,4 @@ public class UserBodyModel {
         this.hip = hip;
     }
 
-    public BigDecimal getLegLength() {
-        return legLength;
-    }
-
-    public void setLegLength(BigDecimal legLength) {
-        this.legLength = legLength;
-    }
 }

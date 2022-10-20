@@ -16,5 +16,5 @@ public interface UserBodyModelMapper {
 
     int updateByPrimaryKey(UserBodyModel record);
 
-    UserBodyModel selectByUserId(Integer userId);
+    UserBodyModel selectByUserId(Long userId);
 }

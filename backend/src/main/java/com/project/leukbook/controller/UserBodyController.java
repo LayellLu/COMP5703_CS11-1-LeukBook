@@ -3,10 +3,7 @@ package com.project.leukbook.controller;
 import com.project.leukbook.model.UserBodyModel;
 import com.project.leukbook.service.UserBodyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user-body")
@@ -17,5 +14,10 @@ public class UserBodyController {
     @PostMapping
     public UserBodyModel addUserBody(@RequestBody UserBodyModel userBodyModel) {
         return this.userBodyService.addUserBody(userBodyModel);
+    }
+
+    @GetMapping("/{userId}")
+    public UserBodyModel getUserBodyByUserId(@PathVariable Long userId) {
+        return this.userBodyService.getUserBodyByUserId(userId);
     }
 }

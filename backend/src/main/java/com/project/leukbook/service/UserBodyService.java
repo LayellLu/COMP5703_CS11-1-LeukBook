@@ -14,4 +14,8 @@ public class UserBodyService {
         userBodyModelMapper.insert(userBodyModel);
         return userBodyModel;
     }
+
+    public UserBodyModel getUserBodyByUserId(Long userId) {
+        return userBodyModelMapper.selectByUserId(userId);
+    }
 }
