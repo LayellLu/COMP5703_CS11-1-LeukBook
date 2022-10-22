@@ -1,3 +1,5 @@
+-- Create Schema
+CREATE SCHEMA IF NOT EXISTS leukbook;
 -- Init User Related Tables
 CREATE TABLE IF NOT EXISTS leukbook.user
 (

@@ -20,4 +20,14 @@ public class UserBodyController {
     public UserBodyModel getUserBodyByUserId(@PathVariable Long userId) {
         return this.userBodyService.getUserBodyByUserId(userId);
     }
+
+    @PostMapping("/size")
+    public Long addUserBodyAndReturnSize(@RequestBody UserBodyModel userBodyModel) {
+        return this.userBodyService.addUserBodyAndReturnSize(userBodyModel);
+    }
+
+    @GetMapping("/size/{userId}")
+    public Long getSizeByUserId(@PathVariable Long userId) {
+        return this.userBodyService.getSizeByUserId(userId);
+    }
 }
