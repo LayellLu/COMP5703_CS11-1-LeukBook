@@ -8,31 +8,31 @@ export default function LoginPage() {
   const axios = require("axios").default;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState(0);
 
   const handleSubmit = () => {
     axios
-      .post("/submit", {
-        params: {
-          email: email,
-          password: password,
-        },
+      .post("/user/login", {
+        email: email,
+        password: password,
       })
       .then(function (response) {
         console.log(response);
         console.log("success");
-        return (
-          <Alert key="success" variant="success">
-            Submitted successfully!
-          </Alert>
-        );
+        setUserId(response.id);
+        // return (
+        //   <Alert key="success" variant="success">
+        //     Submitted successfully!
+        //   </Alert>
+        // );
       })
       .catch(function (error) {
         console.log(error);
-        return (
-          <Alert key="danger" variant="danger">
-            Something went wrong, please try again!
-          </Alert>
-        );
+        // return (
+        //   <Alert key="danger" variant="danger">
+        //     Something went wrong, please try again!
+        //   </Alert>
+        // );
       });
   };
 

@@ -10,6 +10,7 @@ import products from "../Products";
 export default function ProductPage() {
   const params = useParams();
   const axios = require("axios").default;
+  const [userId, setUserId] = useState(1);
   const [data, setData] = useState({});
   const [show, setShow] = useState(false);
   const [waist, setWaist] = useState(0);
@@ -27,21 +28,21 @@ export default function ProductPage() {
     }
   }, [params._id]);
 
-  useEffect(() => {
-    //if it has already get the data
-    //Get API
-    axios
-      .get("/get")
-      .then(function (response) {
-        console.log(response);
-        console.log("success");
-        //get the size recommendation
-        setRecommendationSize(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [params._id]);
+  // useEffect(() => {
+  //   //if it has already get the data
+  //   //Get API
+  //   axios
+  //     .get("/get")
+  //     .then(function (response) {
+  //       console.log(response);
+  //       console.log("success");
+  //       //get the size recommendation
+  //       setRecommendationSize(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }, [params._id]);
 
   const handleClose = () => {
     setShow(false);
@@ -49,35 +50,32 @@ export default function ProductPage() {
 
   const handleSubmit = () => {
     setShow(false);
-    //Post API
-    //axios.post(url[, data[, config]])
     axios
-      .post("/submit", {
-        params: {
-          waist: waist,
-          bust: bust,
-          hip: hip,
-          upperArm: upperArm,
-          upperThigh: upperThigh,
-          shoulderWidth: shoulderWidth,
-        },
+      .post("/user-body/size", {
+        userId: userId,
+        upperArm: upperArm,
+        upperThigh: upperThigh,
+        shoulderWidth: shoulderWidth,
+        bust: bust,
+        waist: waist,
+        hip: hip,
       })
       .then(function (response) {
         console.log(response);
         console.log("success");
-        return (
-          <Alert key="success" variant="success">
-            Submitted successfully!
-          </Alert>
-        );
+        // return (
+        //   <Alert key="success" variant="success">
+        //     Submitted successfully!
+        //   </Alert>
+        // );
       })
       .catch(function (error) {
         console.log(error);
-        return (
-          <Alert key="danger" variant="danger">
-            Something went wrong, please try again!
-          </Alert>
-        );
+        // return (
+        //   <Alert key="danger" variant="danger">
+        //     Something went wrong, please try again!
+        //   </Alert>
+        // );
       });
   };
 
@@ -107,7 +105,6 @@ export default function ProductPage() {
             </ListGroup.Item>
 
             <ListGroup.Item>Price: {data.price}</ListGroup.Item>
-            {/* <ListGroup.Item>Color: Blue</ListGroup.Item> */}
             <ListGroup.Item>Status: {data.status}</ListGroup.Item>
             <ListGroup.Item>
               Turn heads and stand out in the crowd wearing your Ivy Dress in
@@ -222,7 +219,6 @@ export default function ProductPage() {
               <Form.Control
                 placeholder="Enter measurements(cm)"
                 onChange={(e) => setBust(e.target.value)}
-                // {...register("bust")}
               />
             </Form.Group>
 
@@ -232,7 +228,6 @@ export default function ProductPage() {
               <Form.Control
                 placeholder="Enter measurements(cm)"
                 onChange={(e) => setHip(e.target.value)}
-                // {...register("hip")}
               />
             </Form.Group>
 
@@ -242,7 +237,6 @@ export default function ProductPage() {
               <Form.Control
                 placeholder="Enter measurements(cm)"
                 onChange={(e) => setUpperArm(e.target.value)}
-                // {...register("upperArm")}
               />
             </Form.Group>
 
@@ -252,7 +246,6 @@ export default function ProductPage() {
               <Form.Control
                 placeholder="Enter measurements(cm)"
                 onChange={(e) => setUpperThigh(e.target.value)}
-                // {...register("upperThigh")}
               />
             </Form.Group>
 
@@ -262,7 +255,6 @@ export default function ProductPage() {
               <Form.Control
                 placeholder="Enter measurements(cm)"
                 onChange={(e) => setShoulderWidth(e.target.value)}
-                // {...register("shoulderWidth")}
               />
             </Form.Group>
           </Form>

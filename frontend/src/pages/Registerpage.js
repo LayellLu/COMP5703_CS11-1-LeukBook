@@ -11,30 +11,27 @@ export default function RegisterPage() {
   const handleLogin = () => {};
 
   const handleSubmit = () => {
-    //modify the API name, params and its structure(the following is fake API and Alert component fail to work)
     axios
-      .post("/submit", {
-        params: {
-          email: email,
-          password: password,
-        },
+      .post("/user/register", {
+        email: email,
+        password: password,
       })
       .then(function (response) {
         console.log(response);
         console.log("success");
-        return (
-          <Alert key="success" variant="success">
-            Submitted successfully!
-          </Alert>
-        );
+        // return (
+        //   <Alert key="success" variant="success">
+        //     Submitted successfully!
+        //   </Alert>
+        // );
       })
       .catch(function (error) {
         console.log(error);
-        return (
-          <Alert key="danger" variant="danger">
-            Something went wrong, please try again!
-          </Alert>
-        );
+        // return (
+        //   <Alert key="danger" variant="danger">
+        //     Something went wrong, please try again!
+        //   </Alert>
+        // );
       });
   };
 
