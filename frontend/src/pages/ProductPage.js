@@ -208,61 +208,78 @@ export default function ProductPage() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Waist</Form.Label>
+              <Form.Label>Waist </Form.Label>
+              <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Mandatory field - Please enter how many centimetres"
+                placeholder="Enter measurements(cm)"
                 onChange={(e) => setWaist(e.target.value)}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Bust</Form.Label>
+              <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Mandatory field - Please enter how many centimetres"
+                placeholder="Enter measurements(cm)"
                 onChange={(e) => setBust(e.target.value)}
+                // {...register("bust")}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
               <Form.Label>Hip</Form.Label>
+              <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Mandatory field - Please enter how many centimetres"
+                placeholder="Enter measurements(cm)"
                 onChange={(e) => setHip(e.target.value)}
+                // {...register("hip")}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
               <Form.Label>Upper Arm</Form.Label>
+              <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Mandatory field - Please enter how many centimetres"
+                placeholder="Enter measurements(cm)"
                 onChange={(e) => setUpperArm(e.target.value)}
+                // {...register("upperArm")}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput5">
               <Form.Label>Upper Thigh</Form.Label>
+              <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Mandatory field - Please enter how many centimetres"
+                placeholder="Enter measurements(cm)"
                 onChange={(e) => setUpperThigh(e.target.value)}
+                // {...register("upperThigh")}
               />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput6">
               <Form.Label>Shoulder Width</Form.Label>
+              <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Mandatory field - Please enter how many centimetres"
+                placeholder="Enter measurements(cm)"
                 onChange={(e) => setShoulderWidth(e.target.value)}
+                // {...register("shoulderWidth")}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Submit
-          </Button>
+          <Modal.Footer>
+            <div style={{ marginRight: "100px", marginBottom: "60px" }}>
+              <span style={{ color: "red" }}>*</span>
+              <span>Mandatory Fields</span>
+            </div>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Submit
+            </Button>
+          </Modal.Footer>
         </Modal.Footer>
       </Modal>
     </>
