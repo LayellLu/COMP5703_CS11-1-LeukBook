@@ -32,7 +32,6 @@ public class UserBodyService {
     }
 
     private Long calculateSize(UserBodyModel userBodyModel) {
-        // 这部分是求出BigDecimal类型的每个参数值的最大值
         // Get Max Size
         BigDecimal maxSize = userBodyModel.getUpperArm();
         if (maxSize.compareTo(userBodyModel.getUpperThigh()) < 0) {
@@ -68,6 +67,6 @@ public class UserBodyService {
                 .divide(BigDecimal.valueOf(2))
                 // 除以二
                 .setScale(0, RoundingMode.UP).longValue();
-                // 最后这句话的意思是向上取整
+                // 向上取整
     }
 }
