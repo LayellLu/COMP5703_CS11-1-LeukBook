@@ -2,24 +2,30 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function LoginPage() {
-  const axios = require("axios").default;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userId, setUserId] = useState(0);
+  const navigate = useNavigate()
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) =>{
+    e.stopPropagation()
+    e.preventDefault()
     axios
-      .post("/user/login", {
+      .post("/api/user/login", {
         email: email,
         password: password,
       })
       .then(function (response) {
-        console.log(response);
+        console.log('response', response);
         console.log("success");
         setUserId(response.id);
+        localStorage.setItem('userId', response.data.id)
+        navigate('/')
         // return (
         //   <Alert key="success" variant="success">
         //     Submitted successfully!
@@ -34,6 +40,7 @@ export default function LoginPage() {
         //   </Alert>
         // );
       });
+
   };
 
   return (

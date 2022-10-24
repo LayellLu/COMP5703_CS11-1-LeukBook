@@ -6,10 +6,11 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import products from "../Products";
+import axios from "axios"
 
 export default function ProductPage() {
   const params = useParams();
-  const axios = require("axios").default;
+  // const axios = require("axios").default;
   const [userId, setUserId] = useState(1);
   const [data, setData] = useState({});
   const [show, setShow] = useState(false);
@@ -28,30 +29,32 @@ export default function ProductPage() {
     }
   }, [params._id]);
 
-  // useEffect(() => {
-  //   //if it has already get the data
-  //   //Get API
-  //   axios
-  //     .get("/get")
-  //     .then(function (response) {
-  //       console.log(response);
-  //       console.log("success");
-  //       //get the size recommendation
-  //       setRecommendationSize(response);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }, [params._id]);
+  useEffect(() => {
+    //if it has already get the data
+    //Get API
+    const userId = localStorage.getItem('userId')
+    axios
+      .get(`/api/user-body/size/${userId}`)
+      .then(function (response) {
+        console.log('debug_response', response.data);
+        console.log("success");
+        //get the size recommendation
+        setRecommendationSize(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [params._id]);
 
   const handleClose = () => {
     setShow(false);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     setShow(false);
     axios
-      .post("/user-body/size", {
+      .post("/api/user-body/size", {
         userId: userId,
         upperArm: upperArm,
         upperThigh: upperThigh,
