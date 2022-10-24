@@ -60,8 +60,7 @@ public class UserBodyService {
                 .add(userBodyModel.getWaist())
                 .add(userBodyModel.getHip())
                 // 上面这些add是用来获得所有参数的值
-                .divide(BigDecimal.valueOf(6))
-                // 加上divide求出平均值
+                .divide(BigDecimal.valueOf(6), RoundingMode.HALF_DOWN)                // 加上divide求出平均值
                 .add(maxSize)
                 // 再加上最大值
                 .divide(BigDecimal.valueOf(2))

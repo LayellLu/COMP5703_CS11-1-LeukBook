@@ -33,6 +33,7 @@ export default function ProductPage() {
     //if it has already get the data
     //Get API
     const userId = localStorage.getItem('userId')
+    setUserId(userId);
     axios
       .get(`/api/user-body/size/${userId}`)
       .then(function (response) {
@@ -66,6 +67,7 @@ export default function ProductPage() {
       .then(function (response) {
         console.log(response);
         console.log("success");
+        setRecommendationSize(response.data);
         // return (
         //   <Alert key="success" variant="success">
         //     Submitted successfully!
