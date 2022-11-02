@@ -12,7 +12,9 @@ export default function RegisterPage() {
   const handleLogin = () => {};
   const navigate =  useNavigate()
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.stopPropagation()
+    e.preventDefault()
     axios
         .post("/api/user/register", {
           email: email,
