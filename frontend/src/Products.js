@@ -7,6 +7,7 @@ const products = [
     tags: "Blue ",
     image: "/images/dress-main.png",
     status: "available",
+    measurement:"/images/m1.png"
   },
   {
     _id: "2",
@@ -16,6 +17,8 @@ const products = [
     tags: "Purple",
     price: "$129.00",
     status: "available",
+    measurement:"/images/m2.png"
+
   },
   {
     _id: "3",
@@ -25,6 +28,8 @@ const products = [
     tags: "Navy",
     price: "$259.00",
     status: "available",
+    measurement:"/images/m3.png"
+
   },
   {
     _id: "4",
@@ -34,6 +39,8 @@ const products = [
     tags: "black",
     price: "$60.00",
     status: "available",
+    measurement:"/images/m4.png"
+
   },
   {
     _id: "5",
@@ -43,6 +50,8 @@ const products = [
     tags: "Black",
     price: "$129.99",
     status: "available",
+    measurement:"/images/m5.png"
+
   },
 ];
 

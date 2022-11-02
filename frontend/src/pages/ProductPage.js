@@ -279,6 +279,11 @@ export default function ProductPage() {
           </Modal.Footer>
         </Modal.Footer>
       </Modal>
+      <Card className="my-3 p-3 rounded">
+        <Link to={'/products/${product._id}'}>
+          <Card.Img src={data.measurement} fluid="true"/>
+        </Link>
+      </Card>
     </>
   );
 }
