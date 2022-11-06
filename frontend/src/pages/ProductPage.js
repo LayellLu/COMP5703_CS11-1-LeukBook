@@ -213,7 +213,7 @@ export default function ProductPage() {
               <Form.Label>Waist </Form.Label>
               <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Enter measurements(cm)"
+                placeholder="Enter measurements(SIZE)"
                 onChange={(e) => setWaist(e.target.value)}
               />
             </Form.Group>
@@ -222,7 +222,7 @@ export default function ProductPage() {
               <Form.Label>Bust</Form.Label>
               <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Enter measurements(cm)"
+                placeholder="Enter measurements(SIZE)"
                 onChange={(e) => setBust(e.target.value)}
               />
             </Form.Group>
@@ -231,7 +231,7 @@ export default function ProductPage() {
               <Form.Label>Hip</Form.Label>
               <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Enter measurements(cm)"
+                placeholder="Enter measurements(SIZE)"
                 onChange={(e) => setHip(e.target.value)}
               />
             </Form.Group>
@@ -240,7 +240,7 @@ export default function ProductPage() {
               <Form.Label>Upper Arm</Form.Label>
               <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Enter measurements(cm)"
+                placeholder="Enter measurements(SIZE)"
                 onChange={(e) => setUpperArm(e.target.value)}
               />
             </Form.Group>
@@ -249,7 +249,7 @@ export default function ProductPage() {
               <Form.Label>Upper Thigh</Form.Label>
               <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Enter measurements(cm)"
+                placeholder="Enter measurements(SIZE)"
                 onChange={(e) => setUpperThigh(e.target.value)}
               />
             </Form.Group>
@@ -258,7 +258,7 @@ export default function ProductPage() {
               <Form.Label>Shoulder Width</Form.Label>
               <span style={{ color: "red" }}>*</span>
               <Form.Control
-                placeholder="Enter measurements(cm)"
+                placeholder="Enter measurements(SIZE)"
                 onChange={(e) => setShoulderWidth(e.target.value)}
               />
             </Form.Group>
