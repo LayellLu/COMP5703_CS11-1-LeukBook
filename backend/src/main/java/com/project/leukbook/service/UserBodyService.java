@@ -23,6 +23,7 @@ public class UserBodyService {
     }
 
     public Long addUserBodyAndReturnSize(UserBodyModel userBodyModel) {
+        this.checkUserBody(userBodyModel);
         userBodyModelMapper.insert(userBodyModel);
         return this.calculateSize(userBodyModel);
     }
@@ -34,9 +35,6 @@ public class UserBodyService {
     private Long calculateSize(UserBodyModel userBodyModel) {
         // Get Max Size
         BigDecimal maxSize = userBodyModel.getUpperArm();
-        if (maxSize.compareTo(userBodyModel.getUpperThigh()) < 0) {
-            maxSize = userBodyModel.getUpperThigh();
-        }
         if (maxSize.compareTo(userBodyModel.getShoulderWidth()) < 0) {
             maxSize = userBodyModel.getShoulderWidth();
         }
@@ -66,6 +64,18 @@ public class UserBodyService {
                 .divide(BigDecimal.valueOf(2))
                 // 除以二
                 .setScale(0, RoundingMode.UP).longValue();
-                // 向上取整
+        // 向上取整
+    }
+
+    private void checkUserBody(UserBodyModel userBodyModel) {
+        BigDecimal baseLine = new BigDecimal(30);
+        if (baseLine.compareTo(userBodyModel.getUpperArm()) < 0
+                || baseLine.compareTo(userBodyModel.getShoulderWidth()) < 0
+                || baseLine.compareTo(userBodyModel.getUpperThigh()) < 0
+                || baseLine.compareTo(userBodyModel.getBust()) < 0
+                || baseLine.compareTo(userBodyModel.getWaist()) < 0
+                || baseLine.compareTo(userBodyModel.getHip()) < 0) {
+            throw new RuntimeException("less than 30");
+        }
     }
 }
